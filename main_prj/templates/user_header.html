@@ -1,0 +1,46 @@
+{% if message %}
+   <script>
+      alert("{{ message }}");
+   </script>
+{% endif %}
+
+<header class="header">
+   <section class="flex">
+
+      <a href="{% url 'home' %}" class="logo">GiDi</a>
+
+      <form action="{% url 'search' %}" method="POST" class="search-form">
+         {% csrf_token %}
+         <input type="text" name="search_box" class="box" maxlength="100" placeholder="Tìm kiếm..." required>
+         <button type="submit" class="fas fa-search" name="search_btn"></button>
+      </form>
+
+      <div class="icons">
+         <div id="menu-btn" class="fas fa-bars"></div>
+         <div id="search-btn" class="fas fa-search"></div>
+         <div id="user-btn" class="fas fa-user"></div>
+      </div>
+
+      <nav class="navbar">
+         <a href="{% url 'home' %}"> <i class="fas fa-angle-right"></i> Trang chủ</a>
+         <!-- <a href="{% url 'posts' %}"> <i class="fas fa-angle-right"></i> Bài viết</a>
+         <a href="{% url 'all_category' %}"> <i class="fas fa-angle-right"></i> Danh mục</a>
+         <a href="{% url 'authors' %}"> <i class="fas fa-angle-right"></i> Tác giả</a>
+         <a href="{% url 'contact' %}"> <i class="fas fa-angle-right"></i> Liên hệ</a>
+         <a href="{% url 'about' %}"> <i class="fas fa-angle-right"></i> Giới thiệu</a> -->
+      </nav>
+
+      <div class="profile">
+         {% if user_id %}
+            <p class="name">{{ user_name }}</p>
+            <a href="{% url 'update_profile' %}" class="btn">Cập nhật hồ sơ</a>
+            <a href="{% url 'user_logout' %}" onclick="return confirm('Đăng xuất khỏi GiDi?');" class="delete-btn">Đăng xuất</a>
+         {% else %}
+            <p class="name">Vui lòng đăng nhập trước!</p>
+            <a href="{% url 'login' %}" class="option-btn">Đăng nhập</a>
+         {% endif %}
+      </div>
+
+   </section>
+
+</header>
