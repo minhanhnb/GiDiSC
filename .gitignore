@@ -25,3 +25,8 @@ media/
 # PythonAnywhere
 *.tar.gz
 *.zip
+
+# secret key 
+secret_key/
+*.json
+*.env
